@@ -1,29 +1,38 @@
 package model;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Sprite {
-    private Image image; //изображение
+    String path;
+    BufferedImage image;
+    public int index = 0;
+    private SpriteSheet sheet;
+    private float scale;
 
-    public Sprite(Image image) {
-        this.image = image;
+    public Sprite(SpriteSheet sheet, float scale, String path, Boolean mode) {
+        this.sheet = sheet;
+        this.scale = scale;
+        this.path = path;
+        if (!mode) {
+            image = sheet.getSheet();
+        } else {
+            image = sheet.getSprite(index);
+        }
+
     }
 
-    public int getWidth() { //получаем ширину картинки
-        return image.getWidth(null);
+    public int getIndex() {
+        return index;
     }
 
-    public int getHeight() { //получаем высоту картинки
-        return image.getHeight(null);
+    public void setIndex(int index) {
+        this.index = index;
     }
 
-    public void draw(Graphics g,int x,int y) { //рисуем картинку
-        g.drawImage(image,x,y,null);
-    }
-
-    public Sprite createSprite(Image sourceImage) {
-        Sprite sprite = new Sprite(Toolkit.getDefaultToolkit().createImage(sourceImage.getSource()));
-        return sprite;
+    public void render(Graphics2D g, float x, float y) {
+        System.out.println("htylth || Coordinaty " + x + " " + y);
+        g.drawImage(image, (int) (x), (int) (y), (int) (image.getWidth()), (int) (image.getHeight()), null);
     }
 
 }

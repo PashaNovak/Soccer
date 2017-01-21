@@ -12,4 +12,6 @@ public abstract class Scene {
     public abstract void update(long nanosPassed);
 
     public abstract void draw(Graphics2D g);
+
+    public abstract void playMusic(String path);
 }

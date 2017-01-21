@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 public class DesktopGameBuilder {
     public static Game build(Dimension screenSize) {
         final FootballGame game = new FootballGame(screenSize);

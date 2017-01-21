@@ -10,40 +10,61 @@ public enum PlayerDirection {
     DOWN_RIGHT,
     DOWN_LEFT;
 
-    public int deltaX() {
+    private int deltaX = 0;
+    private int deltaY = 0;
+
+    public void deltaX() {
         switch (this) {
             case LEFT:
-                return -1;
+                setDeltaX(-1);
             case RIGHT:
-                return 1;
+                setDeltaX(1);
             case UP_LEFT:
-                return -1;
+                setDeltaX(-1);
             case UP_RIGHT:
-                return 1;
+                setDeltaX(1);
             case DOWN_LEFT:
-                return -1;
+                setDeltaX(-1);
             case DOWN_RIGHT:
-                return 1;
+                setDeltaX(1);
             default:
-                return 0;
+                setDeltaX(0);
         }
     }
-    public int deltaY() {
+
+    public void deltaY() {
         switch (this) {
             case UP:
-                return 1;
+                setDeltaY(1);
             case DOWN:
-                return -1;
+                setDeltaY(-1);
             case UP_RIGHT:
-                return 1;
+                setDeltaY(1);
             case DOWN_RIGHT:
-                return -1;
+                setDeltaY(-1);
             case UP_LEFT:
-                return 1;
+                setDeltaY(1);
             case DOWN_LEFT:
-                return -1;
+                setDeltaY(-1);
             default:
-                return 0;
+                setDeltaY(0);
         }
     }
+
+    public int getDeltaX() {
+        return deltaX;
+    }
+
+    public void setDeltaX(int deltaX) {
+        this.deltaX = deltaX;
+    }
+
+    public int getDeltaY() {
+        return deltaY;
+    }
+
+    public void setDeltaY(int deltaY) {
+        this.deltaY = deltaY;
+    }
+
 }

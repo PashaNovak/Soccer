@@ -1,6 +1,7 @@
 package utils;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +14,8 @@ public class ResourceLoader {
 
         BufferedImage image = null;
 
-        try{
-            image = ImageIO.read(new File( PATH + fileName));
+        try {
+            image = ImageIO.read(new File(PATH + fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }

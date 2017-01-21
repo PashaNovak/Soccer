@@ -4,19 +4,25 @@ import model.Game;
 import model.Scene;
 import utils.Input;
 
+import javax.sound.sampled.Clip;
+import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static model.Constants.mainTheme;
+
 public class FootballGame extends Canvas implements Game, Runnable {
     private Thread gameThread;
     private AtomicBoolean running;
+    private AtomicBoolean playing;
     private Input input;
     private Scene scene;
 
     public FootballGame(Dimension screenSize) {
         running = new AtomicBoolean(false);
+        playing = new AtomicBoolean(false);
         setSize(screenSize);
         initInput();
         initFocusListener();
@@ -77,6 +83,7 @@ public class FootballGame extends Canvas implements Game, Runnable {
 
     @Override
     public void run() {
+        int run = 0;
         long previousIterationTime = System.nanoTime();
         while (running.get()) {
             if (scene == null) {
@@ -90,5 +97,6 @@ public class FootballGame extends Canvas implements Game, Runnable {
             scene.draw(g);
             getBufferStrategy().show();
         }
+        if (playing.compareAndSet(false, true)) scene.playMusic(mainTheme);
     }
 }
